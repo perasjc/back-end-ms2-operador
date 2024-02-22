@@ -1,0 +1,34 @@
+## Configuracion de Spring
+spring:
+  sql:
+    init:
+      mode: always
+  application:
+    name: ms2-operador
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/peliculas} #Actualizar con el valor de tu despliegue local de MySQL.
+    driver-class-name: ${DB_DRIVER:com.mysql.cj.jdbc.Driver}
+    username: ${DB_USER:root} #Actualizar con el valor de tu usuario.
+    password: ${DB_PASSWORD:example} #Actualizar con el valor de tu contrase�a de root.
+  jpa:
+    defer-datasource-initialization: true
+    show-sql: true
+    hibernate:
+      ddl-auto: create #update
+
+
+## Configuracion de Instancia
+server:
+  port: 8089
+
+## Configuracion del cliente de Eureka
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://127.0.0.1:8761/eureka}
+  instance:
+    preferIpAddress: true
+    hostname: ms2-operador
+
+getMovie:
+  url: http://ms-movies-buscador/movies/%s
